@@ -272,51 +272,51 @@
         });
     }
 
-    ///** 电子邮件验证（摘自网络） **/
+    ///** 输入验证(没写完) **/
 
-    // function awdFormValidation(email_address) {
-    //     var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
-    //     return pattern.test(email_address);
-    // }
+    function awdFormValidation(stu_address) {
+        var pattern = new RegExp('/w\d{8}');
+        return pattern.test(stu_address);
+    }
 
 
     ///** 注册表单（摘自网络） **/
 
-    // function awdSubscribe() {
-    //     if (awd_subscribe == 1 || awd_subscribe == 2) {
-    //         awdSubscribeForm();
-    //     } else if (awd_subscribe == 3) {
-    //         awdMailchimp();
-    //     }
-    // }
+    function awdSubscribe() {
+        if (awd_subscribe == 1 || awd_subscribe == 2) {
+            awdSubscribeForm();
+        } else if (awd_subscribe == 3) {
+            awdMailchimp();
+        }
+    }
 
-    //* mailchimp */
+    //* mailchimp（摘自网络） */
 
-    // function awdMailchimp() {
-    //
-    //     var $form = $('#subscribe-form');
-    //     var $subscribeEmail = $('#subscribe-email');
-    //
-    //     $form.ajaxChimp({
-    //         callback: awdMailchimpStatus,
-    //         language: 'eng',
-    //         type: 'POST',
-    //         url: awd_mailchimpUrl
-    //     });
-    //
-    //     function awdMailchimpStatus(resp) {
-    //
-    //         if (resp.result === 'error') {
-    //             $subscribeEmail.focus();
-    //             $('.subscribe-notice').addClass('visible');
-    //         }
-    //         else if (resp.result === 'success') {
-    //             $form[0].reset();
-    //             $subscribeEmail.blur();
-    //             $('.subscribe-notice').addClass('visible');
-    //         }
-    //     }
-    // }
+    function awdMailchimp() {
+
+        var $form = $('#subscribe-form');
+        var $subscribeEmail = $('#subscribe-email');
+
+        $form.ajaxChimp({
+            callback: awdMailchimpStatus,
+            language: 'eng',
+            type: 'POST',
+            url: awd_mailchimpUrl
+        });
+
+        function awdMailchimpStatus(resp) {
+
+            if (resp.result === 'error') {
+                $subscribeEmail.focus();
+                $('.subscribe-notice').addClass('visible');
+            }
+            else if (resp.result === 'success') {
+                $form[0].reset();
+                $subscribeEmail.blur();
+                $('.subscribe-notice').addClass('visible');
+            }
+        }
+    }
     //
     // //* php(摘自网络) */
     //
@@ -372,59 +372,59 @@
     // }
 
 
-    // ///** 表单提交（摘自网络） **/
-    //
-    // function awdContactForm() {
-    //
-    //     var $form = $('#contact-form');
-    //
-    //     $form.on('submit', function (e) {
-    //
-    //         var input = $(this).find('input, textarea');
-    //         var requiredFields = $(this).find('.required');
-    //         var emailField = $('.contact-form-email');
-    //         var contactNameVal = $('.contact-form-name').val();
-    //         var contactSubjectVal = $('.contact-form-subject').val();
-    //         var contactEmailVal = emailField.val();
-    //         var contactMessageVal = $('.contact-form-message').val();
-    //         var contactNotice = $('.contact-notice');
-    //
-    //         e.preventDefault();
-    //
-    //         if (contactNameVal == '' || contactEmailVal == '' || contactMessageVal == '' || contactSubjectVal == '') {
-    //             contactNotice.stop(true).hide().html(awd_contactInputError).fadeIn();
-    //             requiredFields.each(function () {
-    //                 $(this).addClass("input-error");
-    //             });
-    //
-    //         } else if (!awdFormValidation(contactEmailVal)) {
-    //             contactNotice.stop(true).hide().html(awd_contactEmailError).fadeIn();
-    //             emailField.addClass("input-error");
-    //             $('#contact-email').focus();
-    //         }
-    //         else {
-    //             $.ajax({
-    //                 type: 'POST',
-    //                 url: 'assets/php/contact.php',
-    //                 data: {
-    //                     name: contactNameVal,
-    //                     email: contactEmailVal,
-    //                     message: contactMessageVal,
-    //                     subject: contactSubjectVal,
-    //                     emailAddress: awd_contactEmail
-    //                 },
-    //                 success: function () {
-    //                     contactNotice.stop(true).hide().html(awd_contactSuccess).fadeIn();
-    //                     $form[0].reset();
-    //                     input.blur();
-    //                 }
-    //             });
-    //         }
-    //         return false;
-    //
-    //     });
-    //
-    // }
+    //** 表单提交（摘自网络） **/
+
+    function awdContactForm() {
+
+        var $form = $('#contact-form');
+
+        $form.on('submit', function (e) {
+
+            var input = $(this).find('input, textarea');
+            var requiredFields = $(this).find('.required');
+            var emailField = $('.contact-form-email');
+            var contactNameVal = $('.contact-form-name').val();
+            var contactSubjectVal = $('.contact-form-subject').val();
+            var contactEmailVal = emailField.val();
+            var contactMessageVal = $('.contact-form-message').val();
+            var contactNotice = $('.contact-notice');
+
+            e.preventDefault();
+
+            if (contactNameVal == '' || contactEmailVal == '' || contactMessageVal == '' || contactSubjectVal == '') {
+                contactNotice.stop(true).hide().html(awd_contactInputError).fadeIn();
+                requiredFields.each(function () {
+                    $(this).addClass("input-error");
+                });
+
+            } else if (!awdFormValidation(contactEmailVal)) {
+                contactNotice.stop(true).hide().html(awd_contactEmailError).fadeIn();
+                emailField.addClass("input-error");
+                $('#contact-email').focus();
+            }
+            else {
+                $.ajax({
+                    type: 'POST',
+                    url: 'assets/php/contact.php',
+                    data: {
+                        name: contactNameVal,
+                        email: contactEmailVal,
+                        message: contactMessageVal,
+                        subject: contactSubjectVal,
+                        emailAddress: awd_contactEmail
+                    },
+                    success: function () {
+                        contactNotice.stop(true).hide().html(awd_contactSuccess).fadeIn();
+                        $form[0].reset();
+                        input.blur();
+                    }
+                });
+            }
+            return false;
+
+        });
+
+    }
 
     ///** 动画元素 **/
 
