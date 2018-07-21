@@ -274,9 +274,19 @@
 
     ///** 输入验证(没写完) **/
 
-    function awdFormValidation(stu_address) {
-        var pattern = new RegExp('/w\d{8}');
-        return pattern.test(stu_address);
+    function check(){
+        var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
+        var obj = document.getElementById("apply-email"); //要验证的对象
+        if(obj.value === ""){ //输入不能为空
+            alert("输入不能为空!");
+            return false;
+        }else if(!reg.test(obj.value)){ //正则验证不通过，格式不对
+            alert("验证不通过!");
+            return false;
+        }else{
+            alert("通过！");
+            return true;
+        }
     }
 
 
@@ -294,8 +304,8 @@
 
     function awdMailchimp() {
 
-        var $form = $('#subscribe-form');
-        var $subscribeEmail = $('#subscribe-email');
+        var $form = $('#apply-form');
+        var $applyEmail = $('#apply-email');
 
         $form.ajaxChimp({
             callback: awdMailchimpStatus,
@@ -307,60 +317,60 @@
         function awdMailchimpStatus(resp) {
 
             if (resp.result === 'error') {
-                $subscribeEmail.focus();
-                $('.subscribe-notice').addClass('visible');
+                $applyEmail.focus();
+                $('.apply-notice').addClass('visible');
             }
             else if (resp.result === 'success') {
                 $form[0].reset();
-                $subscribeEmail.blur();
-                $('.subscribe-notice').addClass('visible');
+                $applyEmail.blur();
+                $('.apply-notice').addClass('visible');
             }
         }
     }
     //
     // //* php(摘自网络) */
     //
-    // function awdSubscribeForm() {
+    // function awdapplyForm() {
     //
-    //     var $form = $('#subscribe-form');
-    //     var $subscribeEmail = $('#subscribe-email');
-    //     if (awd_subscribe == 1) {
+    //     var $form = $('#apply-form');
+    //     var $applyEmail = $('#apply-email');
+    //     if (awd_apply == 1) {
     //         var url = 'assets/php/to-mail.php';
-    //     } else if (awd_subscribe == 2) {
+    //     } else if (awd_apply == 2) {
     //         var url = 'assets/php/to-file.php';
     //     }
     //
-    //     $subscribeEmail.prop('type', 'text');
+    //     $applyEmail.prop('type', 'text');
     //
     //     $form.on('submit', function (e) {
     //
-    //         var subscribeEmailVal = $subscribeEmail.val();
-    //         var $subscribeNotice = $('.subscribe-notice');
+    //         var applyEmailVal = $applyEmail.val();
+    //         var $applyNotice = $('.apply-notice');
     //         var $submitButton = $form.find('button[type="submit"]');
     //
     //         e.preventDefault();
     //
     //         $submitButton.prop('disabled', true);
     //
-    //         if (!awdFormValidation(subscribeEmailVal)) {
-    //             $subscribeNotice.stop(true).hide().addClass('visible').html(awd_subscribeError).fadeIn();
+    //         if (!awdFormValidation(applyEmailVal)) {
+    //             $applyNotice.stop(true).hide().addClass('visible').html(awd_applyError).fadeIn();
     //             $submitButton.prop('disabled', false);
-    //             $subscribeEmail.focus();
+    //             $applyEmail.focus();
     //         }
     //         else {
     //             $.ajax({
     //                 type: 'POST',
     //                 url: url,
     //                 data: {
-    //                     email: subscribeEmailVal,
-    //                     emailAddress: awd_subscribeEmail
+    //                     email: applyEmailVal,
+    //                     emailAddress: awd_applyEmail
     //                 },
     //                 success: function () {
-    //                     $subscribeNotice.stop(true).hide().addClass('visible').html(awd_subscribeSuccess).fadeIn();
+    //                     $applyNotice.stop(true).hide().addClass('visible').html(awd_applySuccess).fadeIn();
     //
     //                     $submitButton.prop('disabled', false);
     //                     $form[0].reset();
-    //                     $subscribeEmail.blur();
+    //                     $applyEmail.blur();
     //
     //                 }
     //             });

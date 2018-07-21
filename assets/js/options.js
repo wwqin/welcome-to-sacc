@@ -1,10 +1,3 @@
-/*************************************************
- * author: Awedoo Studio
- * template: Bicolor - Creative Coming Soon Template
- * version: v1.0
- * url: http://themeforest.net/user/awedoo
- ************************************************/
-
 
 //  enabled = true;
 //  disabled = false;
@@ -28,22 +21,22 @@ var awd_countdownDate = '2016/07/09 00:00:00'; // 2015-12-10
 
 var awd_bordered = false;
 
-///** CONTACT **/
+///** contact **/
 
 var awd_contactEmail = 'email@example.com'; // contact email address
 var awd_contactSuccess = '<i class="icons fa fa-check valid"></i> Message has been sent'; // success submit message
 var awd_contactInputError = '<i class="icons fa fa-close error"></i> all fields are required'; // input error message
 var awd_contactEmailError = '<i class="icons fa fa-close error"></i> email address is invalid'; // email error message
 
-///** SUBSCRIBE **/
+///** apply **/
 
-var awd_subscribe = 3; // 1 = php send email, 2 = save to txt file, 3 = mailchimp
+var awd_apply = 3; // 1 = php send email, 2 = save to txt file, 3 = mailchimp
 
 ///* PHP SEND EMAIL */
 
-var awd_subscribeEmail = 'email@example.com'; // subscribe email address
-var awd_subscribeSuccess = '<i class="icons fa fa-check valid"></i> thank you for subscribing'; // subscribe success message
-var awd_subscribeError = '<i class="icons fa fa-close error"></i> email address is invalid'; // subscribe error message
+var awd_applyEmail = 'email@example.com'; // apply email address
+var awd_applySuccess = '<i class="icons fa fa-check valid"></i> thank you for subscribing'; // apply success message
+var awd_applyError = '<i class="icons fa fa-close error"></i> email address is invalid'; // apply error message
 
 ///* MAILCHIMP */
 

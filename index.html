@@ -33,17 +33,18 @@
     <div id="bg">
         <div id="overlay">
             <div class="awd-site-bg bg-home"></div>
-            <div class="awd-site-bg bg-subscribe"></div>
+            <div class="awd-site-bg bg-apply"></div>
             <div class="awd-site-bg bg-about"></div>
+            <div class="awd-site-bg bg-techincals"></div>
             <div class="awd-site-bg bg-contact"></div>
-            <div class="awd-site-bg bg-services"></div>
         </div>
         <canvas id="awd-site-canvas"></canvas>
     </div>
     <!-- 开始网站标题 -->
     <header id="awd-site-header">
         <div id="awd-site-logo" class="animated" data-animation="fadeInDown" data-animation-delay="500">
-            <h1><a href="#" class="go-slide" data-slide="home"><span><img src="assets/img/logo_副本_副本.png"> sacc</span></a></h1>
+            <h1><a href="#" class="go-slide" data-slide="home"><span><img
+                    src="assets/img/logo_副本_副本.png"> sacc</span></a></h1>
         </div>
 
         <button class="menu-toggle animated" data-animation="fadeInDown" data-animation-delay="500" data-role="toggle">
@@ -57,9 +58,9 @@
                 <!-- 开始导航菜单项 -->
                 <ul>
                     <li><a href="#" data-slide="home" class="active">首页</a></li>
-                    <li><a href="#" data-slide="subscribe">申请</a></li>
+                    <li><a href="#" data-slide="apply">申请</a></li>
                     <li><a href="#" data-slide="about">关于</a></li>
-                    <li><a href="#" data-slide="services">技术部</a></li>
+                    <li><a href="#" data-slide="techincals">技术部</a></li>
                     <li><a href="#" data-slide="contact">联系我们</a></li>
                 </ul>
                 <!-- 开始导航菜单项结束 -->
@@ -111,7 +112,7 @@
                                                            data-slide="about">Who we are?</a>
                                                         <a href="#" class="btn btn-inverse go-slide animated"
                                                            data-animation="fadeIn" data-animation-delay="60"
-                                                           data-slide="subscribe">Join us!</a>
+                                                           data-slide="apply">Join us!</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -124,7 +125,7 @@
                         </div>
 
                         <!-- 首页部分 -->
-                        <div class="slide-item" data-slide-id="subscribe">
+                        <div class="slide-item" data-slide-id="apply">
                             <!-- 启动容器 -->
                             <div class="container-fluid">
                                 <div class="row">
@@ -155,34 +156,45 @@
                                                         <!-- 注册表单 -->
                                                         <div class="row">
                                                             <div class="col-md-12 col-md-offset-0 col-sm-8 col-sm-offset-2">
-                                                                <form id="subscribe-form" class="subscribe-form"
+                                                                <form id="apply-form" class="apply-form"
                                                                       method="post">
-                                                                    <input type="text" id="subscribe-stu"
-                                                                           name="subscribe-stu"
+                                                                    <input type="text" id="apply-stu"
+                                                                           name="apply-stu"
                                                                            placeholder="请留下你的学号"/>
-                                                                    <input type="text" id="subscribe-name"
-                                                                           name="subscribe-name"
+                                                                    <input type="text" id="apply-name"
+                                                                           name="apply-name"
+                                                                           onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"
                                                                            placeholder="请留下你的姓名"/>
+                                                                    <input type="text" id="apply-QQ"
+                                                                           name="apply-qq"
+                                                                           onKeyUp="value=value.replace(/\D/g,'')"
+                                                                           onafterpaste="value=value.replace(/\D/g,'')"
+                                                                           maxlength="15"
+                                                                           placeholder="请留下你的QQ"/>
+                                                                    <input type="text" id="apply-email"
+                                                                           name="apply-email"
+                                                                           placeholder="请留下你的邮箱"/>
                                                                     <select name="bumen">
-                                                                        <option class="subscribe-form-option" value="0">
+                                                                        <option class="apply-form-option" value="0">
                                                                             请选择你要加入的部门
                                                                         </option>
-                                                                        <option class="subscribe-form-option" value="1">
+                                                                        <option class="apply-form-option" value="1">
                                                                             办公室
                                                                         </option>
-                                                                        <option class="subscribe-form-option" value="2">
+                                                                        <option class="apply-form-option" value="2">
                                                                             多媒体
                                                                         </option>
-                                                                        <option class="subscribe-form-option" value="3">
+                                                                        <option class="apply-form-option" value="3">
                                                                             技术部
                                                                         </option>
                                                                     </select>
-                                                                    <button type="submit" id="subscribe-submit"
-                                                                            class="btn btn-inverse"><i
-                                                                            class="fa fa-mouse-pointer"></i>
+                                                                    <button type="submit" id="apply-submit"
+                                                                            class="btn btn-inverse" onclick="check();">
+                                                                        <i
+                                                                                class="fa fa-mouse-pointer"></i>
                                                                         <span>申请</span>
                                                                     </button>
-                                                                    <div class="form-notice subscribe-notice"></div>
+                                                                    <div class="form-notice apply-notice"></div>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -283,7 +295,7 @@
                         </div>
 
                         <!-- 技术部小组介绍 -->
-                        <div class="slide-item" data-slide-id="services">
+                        <div class="slide-item" data-slide-id="techincals">
                             <!-- 启动容器 -->
                             <div class="container-fluid">
                                 <div class="row">
@@ -318,14 +330,14 @@
                                                 <div class="col-md-5 col-md-pull-7 svm">
                                                     <div class="section-info text-left">
                                                         <!-- 左开始 -->
-                                                        <div class="service animated" data-animation="fadeIn"
+                                                        <div class="techincal animated" data-animation="fadeIn"
                                                              data-animation-delay="150"><h3><i class="fa fa-lock"></i>
                                                             安全组</h3>
 
                                                             <p>
                                                                 安全组是科协一个特别的组，因为凡是涉及到计算机都与安全密不可分。也正因为如此，对于组员需要有强大的自学能力，以后的学习也都大多是自学。我们祖传宁缺勿滥的原则，只有达到要求被承认的人才能加入。</p>
                                                         </div>
-                                                        <div class="service animated" data-animation="fadeIn"
+                                                        <div class="techincal animated" data-animation="fadeIn"
                                                              data-animation-delay="150">
                                                             <h3><i class="fa fa-book"></i> Python组</h3>
 
@@ -333,7 +345,7 @@
                                                                 Python是现在非常火爆的一门编程语言，尤其在人工智能方面独霸一方，数据挖掘数据分析上也有不菲的性能，爬虫更是活跃于各大网站。我们python组是以爬虫和数据分析为主，一起学习一起进步的大家庭，希望萌新们多多关注。</p>
                                                         </div>
 
-                                                        <div class="service animated" data-animation="fadeIn"
+                                                        <div class="techincal animated" data-animation="fadeIn"
                                                              data-animation-delay="150">
                                                             <h3><i class="fa fa-desktop"></i> 后端开发组</h3>
                                                             <p>如果你喜欢设计应用程序的基础设施，实现算法和逻辑，以及工作于数据，那么你可能会喜欢成为一名后端开发人员。</p>
@@ -408,10 +420,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+</div>
+</section>
 <!-- 结束部分 -->
-    </main>
+</main>
 <!-- 搞定~ -->
 
 

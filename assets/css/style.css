@@ -213,16 +213,16 @@ textarea {
 
 /* 申请 */
 
-.bg-subscribe,
-.bg-subscribe nav:before {
+.bg-apply,
+.bg-apply nav:before {
     background-color: #252525;
     color: #ffffff;
 }
 
-.bg-subscribe *:not(i):not(nav):after,
-.bg-subscribe *:not(i):not(nav):before,
-.bg-subscribe .btn:hover,
-.bg-subscribe .btn-inverse {
+.bg-apply *:not(i):not(nav):after,
+.bg-apply *:not(i):not(nav):before,
+.bg-apply .btn:hover,
+.bg-apply .btn-inverse {
     background-color: #ffffff;
     border-color: #ffffff;
     color: #252525;
@@ -265,14 +265,14 @@ textarea {
 
 /* 技术部 */
 
-.bg-services,
-.bg-services nav:before {
+.bg-techincals,
+.bg-techincals nav:before {
     background-color: #326394;
     color: #ffffff;
 }
 
-.bg-services *:not(i):not(nav):after,
-.bg-services *:not(i):not(nav):before {
+.bg-techincals *:not(i):not(nav):after,
+.bg-techincals *:not(i):not(nav):before {
     background-color: #ffffff;
 }
 
@@ -692,11 +692,11 @@ strong {
 
 /* 申请 */
 
-.subscribe-form {
+.apply-form {
     margin-top: 30px;
 }
 
-.subscribe-form input,select {
+.apply-form input,select {
     position: relative;
     width: 100%;
     background: transparent;
@@ -720,12 +720,12 @@ strong {
     position: relative;
 }
 
-.subscribe-form-option{
+.apply-form-option{
     color: black;
     background: white;
 }
 
-.subscribe-form .form-notice {
+.apply-form .form-notice {
     font-size: 16px;
     display: inline-block;
     margin-left: 15px;
@@ -831,7 +831,7 @@ textarea::-webkit-input-placeholder {
 
 /* 技术部 */
 
-.service > h3 {
+.techincal > h3 {
     font-family: "Quicksand", sans-serif;
     font-size: 20px;
     text-transform: inherit;
@@ -1413,7 +1413,7 @@ textarea::-webkit-input-placeholder {
         bottom: 0px;
     }
 
-    .subscribe-form .form-notice {
+    .apply-form .form-notice {
         display: block;
     }
 
@@ -1500,7 +1500,7 @@ textarea::-webkit-input-placeholder {
     }
 
     /* 申请 */
-    .subscribe-form button {
+    .apply-form button {
         width: 100%;
     }
 
