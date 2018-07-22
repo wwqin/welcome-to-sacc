@@ -1,6 +1,6 @@
+
 (function ($) {
     "use strict";
-
     function awdMenu() {
         $(".menu-toggle").on('click', function (e) {
             $(this).toggleClass('opened');
@@ -472,7 +472,6 @@
         });
 
     }
-
 
     ///** 文件 **/
 

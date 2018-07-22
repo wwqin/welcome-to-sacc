@@ -75,25 +75,25 @@ table {
 02. Bootstrap 修复
 ====================================================*/
 
-@-webkit-viewport {
-    width: device-width;
-}
+/*@-webkit-viewport {*/
+    /*width:device-width;*/
+/*}*/
 
-@-moz-viewport {
-    width: device-width;
-}
+/*@-moz-viewport {*/
+    /*width: device-width;*/
+/*}*/
 
-@-ms-viewport {
-    width: device-width;
-}
+/*@-ms-viewport {*/
+    /*width: device-width;*/
+/*}*/
 
-@-o-viewport {
-    width: device-width;
-}
+/*@-o-viewport {*/
+    /*width: device-width;*/
+/*}*/
 
-@viewport {
-    width: device-width;
-}
+/*@viewport {*/
+    /*width: device-width;*/
+/*}*/
 
 /*====================================================
 03. 基础样式
@@ -554,8 +554,8 @@ strong {
     transform: translate3d(0, 0, 0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-perspective: 1000;
-    perspective: 1000;
+    /*-webkit-perspective: 1000;*/
+    /*perspective: 1000;*/
     position: relative;
     height: 100%;
     z-index: 10;
@@ -568,7 +568,12 @@ strong {
     left: 25px;
     right: 25px;
     text-align: center;
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#awd-site-content::-webkit-scrollbar {
+    display: none;
 }
 
 #awd-site-main .table-container {
@@ -600,6 +605,7 @@ strong {
     position: relative;
     display: inline-block;
     font-size: 42px;
+    /*padding: 40px;*/
 }
 
 .slide-item.active {
@@ -945,7 +951,7 @@ textarea::-webkit-input-placeholder {
 ====================================================*/
 
 #awd-site-footer {
-    position: absolute;
+    position: fixed;
     bottom: 40px;
     left: 40px;
     right: 40px;
@@ -1046,7 +1052,7 @@ textarea::-webkit-input-placeholder {
 }
 
 /*====================================================
-11. 动画
+11. animated
 ====================================================*/
 
 .start .animated {
@@ -1349,8 +1355,8 @@ textarea::-webkit-input-placeholder {
         transform: translate3d(0, 0, 0);
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
-        -webkit-perspective: 1000;
-        perspective: 1000;
+        /*-webkit-perspective: 1000;*/
+        /*perspective: 1000;*/
         -webkit-transform: translateY(-50%);
         -moz-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
@@ -1421,12 +1427,13 @@ textarea::-webkit-input-placeholder {
         left: 20px;
         right: 20px;
         bottom: 20px;
-        height: 30px;
+        height: 20px;
+
     }
 
     .social-icons {
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         text-align: center;
     }
 
@@ -1444,6 +1451,9 @@ textarea::-webkit-input-placeholder {
 
     /* 时钟 */
 
+     .social-icons{
+         max-width: 290px;
+     }
     #clock .counter-date {
         max-width: 290px;
         float: none;
@@ -1489,6 +1499,7 @@ textarea::-webkit-input-placeholder {
     .slide-item .line:before,
     .slide-item .line:after {
         width: 80px;
+
     }
 
     .slide-item .line:before {
@@ -1540,6 +1551,5 @@ textarea::-webkit-input-placeholder {
         font-size: 28px;
         margin: 20px 0;
     }
-
 
 }
