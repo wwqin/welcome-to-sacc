@@ -215,7 +215,7 @@ textarea {
 
 .bg-apply,
 .bg-apply nav:before {
-    background-color: #252525;
+    background-color: #af00ea;
     color: #ffffff;
 }
 
@@ -225,7 +225,7 @@ textarea {
 .bg-apply .btn-inverse {
     background-color: #ffffff;
     border-color: #ffffff;
-    color: #252525;
+    color: #af00ea;
 }
 
 /* 关于 */
