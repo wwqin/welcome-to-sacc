@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <head>
     <title>你好,SACC!</title>
-
     <!-- META DATA -->
     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     <!-- CSS 实现插件 -->
     <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
     <link rel="stylesheet" href="assets/css/bicolor.min.css">
-
     <!-- CSS  -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/animate.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-
     <!--  IE8 -->
     <!-- IE 9--
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <!--[endif]-->
-
     <!-- 网站图标 -->
     <link rel="shortcut icon" href="assets/img/logo_副本.png">
     <link rel="apple-touch-icon" href="assets/img/logo_副本4.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/img/logo_副本2.png">
     <link rel="apple-touch-icon" sizes="114x114" href="assets/img/logo_副本3.png">
-
 </head>
 <body>
 <div id="awd-site-wrap" class="bg bg-home">
@@ -168,7 +162,7 @@
                                                                            name="apply-qq"
                                                                            maxlength="15"
                                                                            placeholder="请留下你的QQ"/>
-                                                                    <input type="text" id="apply-email"
+                                                                    <input type="email" id="apply-email"
                                                                            name="apply-email"
                                                                            placeholder="请留下你的邮箱"/>
                                                                     <select  id="bumen" title="bumen">
@@ -186,7 +180,7 @@
                                                                         </option>
                                                                     </select>
                                                                     <button type="submit" id="apply-submit"
-                                                                            class="btn btn-inverse" onclick="check();">
+                                                                            class="btn btn-inverse" onclick="inputcheck()">
                                                                         <i
                                                                                 class="fa fa-mouse-pointer"></i>
                                                                         <span>申请</span>
@@ -442,6 +436,27 @@
     <!-- 社交图标结束 -->
 </footer>
 <!-- JS -->
+<script>
+    function inputcheck(){
+        var reg0= new RegExp("[A-Za-z0-9]+$"); //正则表达式
+        var reg1= new RegExp("\d{3,12}");//
+        var obj0 = document.getElementById("apply-stu"); //要验证的对象
+        var obj1=document.getElementById("apply-QQ");
+        var obj2=document.getElementById("apply-name");
+        var obj3=document.getElementById("bumen")
+        if(obj0.value === ""||obj1.value===""||obj2.value===""||obj3.value===0){ //输入不能为空
+            alert("输入不能为空!");
+            return false;
+        }else if(!reg0.test(obj0.value)){ //正则验证不通过，格式不对
+            alert("输入错误!");
+            return false;
+        }else{
+            alert("注册成功！");
+            window.open("check.html");
+            return true;
+        }
+    }
+</script>
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/vendor.js"></script>

@@ -9,126 +9,235 @@
     }
 
     ///** 背景动画 **/
+    var can = document.getElementById('awd-site-canvas');
+    var cxt = can.getContext('2d');
 
-    var canvas = document.getElementById("awd-site-canvas");
-    var ctx = canvas.getContext("2d");
-    window.requestAnimFrame = (function () {
-        return window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        function (callback) {
-            window.setTimeout(callback, 1000 / 60);
+    var w = can.width = window.innerWidth;
+    var h = can.height = window.innerHeight;
+
+    var num = 200; //生成点的个数
+    var data = []; //定义一个数组，准备用来存坐标
+    var move = {};
+    var liuXY = [];
+    var k = -1;
+    var range = Math.atan(k);
+    var length = 200;
+
+//生成num个点，并且存储初始坐标
+    for (var i = 0; i < num; i++) {
+        data[i] = {
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: Math.random() * 8 + 3
         };
-    })();
-
-    var curves_array = [];
-    var curve = function (cp1x, cp1y, cp2x, cp2y, x, y, cp1xvx, cp1xvy, cp1yvx, cp1yvy, cp2xvx, cp2xvy, cp2yvx, cp2yvy) {
-        this.cp1x = cp1x;
-        this.cp1y = cp1y;
-        this.cp2x = cp2x;
-        this.cp2y = cp2y;
-        this.x = x;
-        this.y = y;
-
-        this.cp1xvx = cp1xvx;
-        this.cp1xvy = cp1xvy;
-        this.cp1yvx = cp1yvx;
-        this.cp1yvy = cp1yvy;
-
-        this.cp2xvx = cp2xvx;
-        this.cp2xvy = cp2xvy;
-        this.cp2yvx = cp2yvx;
-        this.cp2yvy = cp2yvy;
+        Cricle(data[i].x, data[i].y, data[i].r);
     };
 
+    ! function draw() {
+        cxt.clearRect(0, 0, w, h);
+        for (var i = 0; i < num; i++) {
+            data[i].r += Math.random() * 2 - 1;
+            data[i].r = Math.max(0, data[i].r);
+            data[i].r = Math.min(12, data[i].r);
+            Cricle(data[i].x, data[i].y, data[i].r);
+        };
+        if (liuXY.length) {
+            for (var i in liuXY) {
+                liuXY[i].cX -= 10;
+                liuX(liuXY[i].cX, liuXY[i].y, liuXY[i].x);
+                if (liuXY[i].cX < 0 || getY(liuXY[i].cX, liuXY[i].y, liuXY[i].x) > h) {
+                    liuXY.splice(i, 1);
+                };
+            };
+        };
+        if (Math.random() > 0.98) {
+            var a = Math.random() * (w - 400) + 400;
+            liuXY.push({
+                x: a,
+                y: 0,
+                cX: a
+            });
+        };
+        window.requestAnimationFrame(draw);
+    }();
 
-    function awdCanvasResize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
+    function liuX(x, sX, sY) {
+        cxt.save();
+        var y = getY(x, sY, sX);
+        var r = 15;
+        var rad = cxt.createRadialGradient(x, y, 0, x, y, r);
+        rad.addColorStop(0, 'rgba(255,255,255,0.8)');
+        rad.addColorStop(0.1, 'rgba(255,255,255,0.8)');
+        rad.addColorStop(0.2, 'rgba(255,255,255,0.08)');
+        rad.addColorStop(1, 'rgba(255,255,255,0)');
+        cxt.fillStyle = rad;
+        cxt.beginPath();
+        cxt.arc(x, y, r, 0, 2 * Math.PI, true);
+        cxt.closePath();
+        cxt.fill();
+        cxt.restore();
 
+        var wX = x + (Math.cos(range) * length);
+        var wY = y + (Math.sin(range) * length);
 
-    function awdCanvasInit() {
-        for (var i = 0; i < awd_bg_number_of_curves; i++) {
-            var cp1x = Math.random() * canvas.width;
-            var cp1y = Math.random() * canvas.height;
-            var cp2x = Math.random() * canvas.width;
-            var cp2y = Math.random() * canvas.height;
-            var x = 0;
-            var y = 0;
+        var x1 = x + 3;
+        var y1 = y;
+        var x2 = x;
+        var y2 = y - 3;
 
-            var cp1xvx = Math.random() * 2- 1;
-            var cp1xvy = Math.random() * 2 - 1;
+        cxt.save();
+        var rad2 = cxt.createRadialGradient(x, y, 0, x, y, length);
+        rad2.addColorStop(0, 'rgba(255,255,255,0.1)');
+        rad2.addColorStop(1, 'rgba(255,255,255,0)');
+        cxt.fillStyle = rad2;
+        cxt.beginPath();
+        cxt.moveTo(x1, y1);
+        cxt.lineTo(x2, y2);
+        cxt.lineTo(wX, wY);
+        cxt.closePath();
+        cxt.fill();
+        cxt.restore();
+    };
 
-            var cp1yvx = Math.random() * 2 - 1;
-            var cp1yvy = Math.random() * 2 - 1;
+    function getY(x, startY, startX) {
+        return k * x + startY - k * startX;
+    };
 
-            var cp2xvx= Math.random() * 2 - 1;
-            var cp2xvy= Math.random() * 2 - 1;
-
-            var cp2yvx = Math.random() * 2 - 1;
-            var cp2yvy = Math.random() * 2 - 1;
-
-
-            curves_array.push(
-                new curve(
-                    cp1x, cp1y, cp2x, cp2y,
-                    x, y,
-                    cp1xvx,cp1xvy,cp1yvx,cp1yvy,
-                    cp2xvx,cp2xvy,cp2yvx,cp2yvy
-                )
-            );
-        }
-    }
-
-
-    function awdCanvasDraw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        ctx.lineWidth = 1;
-        ctx.strokeStyle = $("#awd-site-wrap").css('color');
-
-        for (var i = 0; i < curves_array.length; i++) {
-
-            ctx.beginPath();
-            ctx.moveTo(-100, canvas.height + 100);
-            ctx.bezierCurveTo(
-                curves_array[i].cp1x, curves_array[i].cp1y,
-                curves_array[i].cp2x, curves_array[i].cp2y,
-                canvas.width + 100, curves_array[i].y - 100
-            );
-            ctx.stroke();
-
-            if (curves_array[i].cp1x < 0 || curves_array[i].cp1x > canvas.width) {
-                curves_array[i].cp1x -= curves_array[i].cp1xvx;
-                curves_array[i].cp1xvx *= -1;
-            }
-            if (curves_array[i].cp1y < 0 || curves_array[i].cp1y > canvas.height) {
-                curves_array[i].cp1y -= curves_array[i].cp1yvy;
-                curves_array[i].cp1yvy *= -1;
-            }
-
-            if (curves_array[i].cp2x < 0 || curves_array[i].cp2x > canvas.width) {
-                curves_array[i].cp2x -= curves_array[i].cp2xvx;
-                curves_array[i].cp2xvx *= -1;
-            }
-            if (curves_array[i].cp2y < 0 || curves_array[i].cp2y > canvas.height) {
-                curves_array[i].cp2y -= curves_array[i].cp2yvy;
-                curves_array[i].cp2yvy *= -1;
-            }
-
-            curves_array[i].cp1y += curves_array[i].cp1yvy;
-            curves_array[i].cp1x += curves_array[i].cp1xvx;
-            curves_array[i].cp2x += curves_array[i].cp2xvx;
-        }
-        requestAnimFrame(awdCanvasDraw);
-    }
-
-    function awdCanvas(){
-        awdCanvasResize();
-        awdCanvasInit();
-        awdCanvasDraw();
-    }
+//画点
+    function Cricle(x, y, r) {
+        cxt.save();
+        var rad = cxt.createRadialGradient(x, y, 0, x, y, r);
+        rad.addColorStop(0, 'rgba(255,255,255,0.8)');
+        rad.addColorStop(0.1, 'rgba(255,255,255,0.8)');
+        rad.addColorStop(0.2, 'rgba(255,255,255,0.08)');
+        rad.addColorStop(1, 'rgba(255,255,255,0)');
+        cxt.fillStyle = rad;
+        cxt.beginPath();
+        cxt.arc(x, y, r, 0, 2 * Math.PI, true);
+        cxt.closePath();
+        cxt.fill();
+        cxt.restore();
+    };
+    //
+    // var canvas = document.getElementById("awd-site-canvas");
+    // var ctx = canvas.getContext("2d");
+    // window.requestAnimFrame = (function () {
+    //     return window.requestAnimationFrame ||
+    //     window.webkitRequestAnimationFrame ||
+    //     window.mozRequestAnimationFrame ||
+    //     function (callback) {
+    //         window.setTimeout(callback, 1000 / 60);
+    //     };
+    // })();
+    //
+    // var curves_array = [];
+    // var curve = function (cp1x, cp1y, cp2x, cp2y, x, y, cp1xvx, cp1xvy, cp1yvx, cp1yvy, cp2xvx, cp2xvy, cp2yvx, cp2yvy) {
+    //     this.cp1x = cp1x;
+    //     this.cp1y = cp1y;
+    //     this.cp2x = cp2x;
+    //     this.cp2y = cp2y;
+    //     this.x = x;
+    //     this.y = y;
+    //
+    //     this.cp1xvx = cp1xvx;
+    //     this.cp1xvy = cp1xvy;
+    //     this.cp1yvx = cp1yvx;
+    //     this.cp1yvy = cp1yvy;
+    //
+    //     this.cp2xvx = cp2xvx;
+    //     this.cp2xvy = cp2xvy;
+    //     this.cp2yvx = cp2yvx;
+    //     this.cp2yvy = cp2yvy;
+    // };
+    //
+    //
+    // function awdCanvasResize() {
+    //     canvas.width = window.innerWidth;
+    //     canvas.height = window.innerHeight;
+    // }
+    //
+    //
+    // function awdCanvasInit() {
+    //     for (var i = 0; i < awd_bg_number_of_curves; i++) {
+    //         var cp1x = Math.random() * canvas.width;
+    //         var cp1y = Math.random() * canvas.height;
+    //         var cp2x = Math.random() * canvas.width;
+    //         var cp2y = Math.random() * canvas.height;
+    //         var x = 0;
+    //         var y = 0;
+    //
+    //         var cp1xvx = Math.random() * 2- 1;
+    //         var cp1xvy = Math.random() * 2 - 1;
+    //
+    //         var cp1yvx = Math.random() * 2 - 1;
+    //         var cp1yvy = Math.random() * 2 - 1;
+    //
+    //         var cp2xvx= Math.random() * 2 - 1;
+    //         var cp2xvy= Math.random() * 2 - 1;
+    //
+    //         var cp2yvx = Math.random() * 2 - 1;
+    //         var cp2yvy = Math.random() * 2 - 1;
+    //
+    //
+    //         curves_array.push(
+    //             new curve(
+    //                 cp1x, cp1y, cp2x, cp2y,
+    //                 x, y,
+    //                 cp1xvx,cp1xvy,cp1yvx,cp1yvy,
+    //                 cp2xvx,cp2xvy,cp2yvx,cp2yvy
+    //             )
+    //         );
+    //     }
+    // }
+    //
+    //
+    // function awdCanvasDraw() {
+    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //
+    //     ctx.lineWidth = 1;
+    //     ctx.strokeStyle = $("#awd-site-wrap").css('color');
+    //
+    //     for (var i = 0; i < curves_array.length; i++) {
+    //
+    //         ctx.beginPath();
+    //         ctx.moveTo(-100, canvas.height + 100);
+    //         ctx.bezierCurveTo(
+    //             curves_array[i].cp1x, curves_array[i].cp1y,
+    //             curves_array[i].cp2x, curves_array[i].cp2y,
+    //             canvas.width + 100, curves_array[i].y - 100
+    //         );
+    //         ctx.stroke();
+    //
+    //         if (curves_array[i].cp1x < 0 || curves_array[i].cp1x > canvas.width) {
+    //             curves_array[i].cp1x -= curves_array[i].cp1xvx;
+    //             curves_array[i].cp1xvx *= -1;
+    //         }
+    //         if (curves_array[i].cp1y < 0 || curves_array[i].cp1y > canvas.height) {
+    //             curves_array[i].cp1y -= curves_array[i].cp1yvy;
+    //             curves_array[i].cp1yvy *= -1;
+    //         }
+    //
+    //         if (curves_array[i].cp2x < 0 || curves_array[i].cp2x > canvas.width) {
+    //             curves_array[i].cp2x -= curves_array[i].cp2xvx;
+    //             curves_array[i].cp2xvx *= -1;
+    //         }
+    //         if (curves_array[i].cp2y < 0 || curves_array[i].cp2y > canvas.height) {
+    //             curves_array[i].cp2y -= curves_array[i].cp2yvy;
+    //             curves_array[i].cp2yvy *= -1;
+    //         }
+    //
+    //         curves_array[i].cp1y += curves_array[i].cp1yvy;
+    //         curves_array[i].cp1x += curves_array[i].cp1xvx;
+    //         curves_array[i].cp2x += curves_array[i].cp2xvx;
+    //     }
+    //     requestAnimFrame(awdCanvasDraw);
+    // }
+    //
+    // function awdCanvas(){
+    //     awdCanvasResize();
+    //     awdCanvasInit();
+    //     awdCanvasDraw();
+    // }
 
     ///** 滑块的内容 **/
 
@@ -274,22 +383,6 @@
 
     ///** 输入验证(没写完) **/
 
-    function check(){
-        var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
-        var obj = document.getElementById("apply-email"); //要验证的对象
-        if(obj.value === ""){ //输入不能为空
-            alert("输入不能为空!");
-            return false;
-        }else if(!reg.test(obj.value)){ //正则验证不通过，格式不对
-            alert("验证不通过!");
-            return false;
-        }else{
-            alert("通过！");
-            return true;
-        }
-    }
-
-
     ///** 注册表单（摘自网络） **/
 
     function awdSubscribe() {
@@ -384,57 +477,57 @@
 
     //** 表单提交（摘自网络） **/
 
-    function awdContactForm() {
-
-        var $form = $('#contact-form');
-
-        $form.on('submit', function (e) {
-
-            var input = $(this).find('input, textarea');
-            var requiredFields = $(this).find('.required');
-            var emailField = $('.contact-form-email');
-            var contactNameVal = $('.contact-form-name').val();
-            var contactSubjectVal = $('.contact-form-subject').val();
-            var contactEmailVal = emailField.val();
-            var contactMessageVal = $('.contact-form-message').val();
-            var contactNotice = $('.contact-notice');
-
-            e.preventDefault();
-
-            if (contactNameVal == '' || contactEmailVal == '' || contactMessageVal == '' || contactSubjectVal == '') {
-                contactNotice.stop(true).hide().html(awd_contactInputError).fadeIn();
-                requiredFields.each(function () {
-                    $(this).addClass("input-error");
-                });
-
-            } else if (!awdFormValidation(contactEmailVal)) {
-                contactNotice.stop(true).hide().html(awd_contactEmailError).fadeIn();
-                emailField.addClass("input-error");
-                $('#contact-email').focus();
-            }
-            else {
-                $.ajax({
-                    type: 'POST',
-                    url: 'assets/php/contact.php',
-                    data: {
-                        name: contactNameVal,
-                        email: contactEmailVal,
-                        message: contactMessageVal,
-                        subject: contactSubjectVal,
-                        emailAddress: awd_contactEmail
-                    },
-                    success: function () {
-                        contactNotice.stop(true).hide().html(awd_contactSuccess).fadeIn();
-                        $form[0].reset();
-                        input.blur();
-                    }
-                });
-            }
-            return false;
-
-        });
-
-    }
+    // function awdContactForm() {
+    //
+    //     var $form = $('#contact-form');
+    //
+    //     $form.on('submit', function (e) {
+    //
+    //         var input = $(this).find('input, textarea');
+    //         var requiredFields = $(this).find('.required');
+    //         var emailField = $('.contact-form-email');
+    //         var contactNameVal = $('.contact-form-name').val();
+    //         var contactSubjectVal = $('.contact-form-subject').val();
+    //         var contactEmailVal = emailField.val();
+    //         var contactMessageVal = $('.contact-form-message').val();
+    //         var contactNotice = $('.contact-notice');
+    //
+    //         e.preventDefault();
+    //
+    //         if (contactNameVal == '' || contactEmailVal == '' || contactMessageVal == '' || contactSubjectVal == '') {
+    //             contactNotice.stop(true).hide().html(awd_contactInputError).fadeIn();
+    //             requiredFields.each(function () {
+    //                 $(this).addClass("input-error");
+    //             });
+    //
+    //         } else if (!awdFormValidation(contactEmailVal)) {
+    //             contactNotice.stop(true).hide().html(awd_contactEmailError).fadeIn();
+    //             emailField.addClass("input-error");
+    //             $('#contact-email').focus();
+    //         }
+    //         else {
+    //             $.ajax({
+    //                 type: 'POST',
+    //                 url: 'assets/php/contact.php',
+    //                 data: {
+    //                     name: contactNameVal,
+    //                     email: contactEmailVal,
+    //                     message: contactMessageVal,
+    //                     subject: contactSubjectVal,
+    //                     emailAddress: awd_contactEmail
+    //                 },
+    //                 success: function () {
+    //                     contactNotice.stop(true).hide().html(awd_contactSuccess).fadeIn();
+    //                     $form[0].reset();
+    //                     input.blur();
+    //                 }
+    //             });
+    //         }
+    //         return false;
+    //
+    //     });
+    //
+    // }
 
     ///** 动画元素 **/
 
