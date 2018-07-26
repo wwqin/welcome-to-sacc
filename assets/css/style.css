@@ -215,7 +215,7 @@ textarea {
 
 .bg-apply,
 .bg-apply nav:before {
-    background-color: #af00ea;
+    background-color: #8a6d3b;
     color: #ffffff;
 }
 
@@ -225,7 +225,7 @@ textarea {
 .bg-apply .btn-inverse {
     background-color: #ffffff;
     border-color: #ffffff;
-    color: #af00ea;
+    color: #8a6d3b;
 }
 
 /* 关于 */
@@ -1424,9 +1424,10 @@ textarea::-webkit-input-placeholder {
     }
 
     #awd-site-footer {
-        left: 20px;
+        margin-right: 20px;
+        left: 5px;
         right: 20px;
-        bottom: 20px;
+        bottom: 10px;
         height: 20px;
 
     }
@@ -1442,9 +1443,9 @@ textarea::-webkit-input-placeholder {
     }
 
     #awd-site-footer {
-        display: none;
+        position: fixed;
+        margin-right: 5vw;
     }
-
 }
 
 @media only screen and (max-width: 480px) {

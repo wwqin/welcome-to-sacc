@@ -385,41 +385,41 @@
 
     ///** 注册表单（摘自网络） **/
 
-    function awdSubscribe() {
-        if (awd_subscribe == 1 || awd_subscribe == 2) {
-            awdSubscribeForm();
-        } else if (awd_subscribe == 3) {
-            awdMailchimp();
-        }
-    }
+    // function awdSubscribe() {
+    //     if (awd_subscribe == 1 || awd_subscribe == 2) {
+    //         awdSubscribeForm();
+    //     } else if (awd_subscribe == 3) {
+    //         awdMailchimp();
+    //     }
+    // }
 
     //* mailchimp（摘自网络） */
 
-    function awdMailchimp() {
-
-        var $form = $('#apply-form');
-        var $applyEmail = $('#apply-email');
-
-        $form.ajaxChimp({
-            callback: awdMailchimpStatus,
-            language: 'eng',
-            type: 'POST',
-            url: awd_mailchimpUrl
-        });
-
-        function awdMailchimpStatus(resp) {
-
-            if (resp.result === 'error') {
-                $applyEmail.focus();
-                $('.apply-notice').addClass('visible');
-            }
-            else if (resp.result === 'success') {
-                $form[0].reset();
-                $applyEmail.blur();
-                $('.apply-notice').addClass('visible');
-            }
-        }
-    }
+    // function awdMailchimp() {
+    //
+    //     var $form = $('#apply-form');
+    //     var $applyEmail = $('#apply-email');
+    //
+    //     $form.ajaxChimp({
+    //         callback: awdMailchimpStatus,
+    //         language: 'eng',
+    //         type: 'POST',
+    //         url: awd_mailchimpUrl
+    //     });
+    //
+    //     function awdMailchimpStatus(resp) {
+    //
+    //         if (resp.result === 'error') {
+    //             $applyEmail.focus();
+    //             $('.apply-notice').addClass('visible');
+    //         }
+    //         else if (resp.result === 'success') {
+    //             $form[0].reset();
+    //             $applyEmail.blur();
+    //             $('.apply-notice').addClass('visible');
+    //         }
+    //     }
+    // }
     //
     // //* php(摘自网络) */
     //
