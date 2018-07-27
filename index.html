@@ -172,7 +172,7 @@
                                                         <div class="row">
                                                             <div class="col-md-12 col-md-offset-0 col-sm-8 col-sm-offset-2">
                                                                 <form id="apply-form" class="apply-form"
-                                                                      method="post">
+                                                                      method="post" >
                                                                     <input type="text" id="apply-stu"
                                                                            name="student_id"
                                                                            placeholder="请留下你的学号"/>
@@ -471,7 +471,7 @@
             formData += "choice=" + obj3.value + "&";
             console.log(formData);
             $.ajax({
-                url:"http://10.160.109.128:8000/newstudent/sign_up/",
+                url:"http://120.79.45.147/newstudent/sign_up/",
                 type:"post",
                 dataType:"json",
                 data:formData,
