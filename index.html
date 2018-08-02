@@ -477,7 +477,7 @@
     $(document).ready(function () {
         $("#apply-stu").blur(function(){
             var re=document.querySelector("#apply-stu");
-            console.log(re.value.length);
+            //console.log(re.value.length);
             if(re.value.length!=9){
                 $("#apply-stu").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
             }else{
@@ -486,11 +486,19 @@
         });
         $("#apply-QQ").blur(function(){
             var re1=document.querySelector("#apply-QQ");
-            console.log(re1.value.length);
+            //console.log(re1.value.length);
             if(re1.value.length<6||re1.value.length>12){
                 $("#apply-QQ").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
             }else{
                 $("#apply-QQ").css({"background":" url(assets/img/C.png) no-repeat right","border-color":"green"});
+            }
+        });
+        $("#bumen").blur(function(){
+            var re2=document.querySelector("#bumen");
+            //console.log(re2.value);
+            if(re2.value==0){
+                $("#bumen").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
+                //console.log("ok");
             }
         });
         $("#apply-submit").click(function () {
@@ -515,7 +523,7 @@
                 formData += "choice=" + obj3.value + "&";
                 console.log(formData);
                 $.ajax({
-                    url: "http://120.79.45.147/newstudent/sign_up/",
+                    url: "http://www.plusjiajia.com//newstudent/sign_up/",
                     type: "post",
                     dataType: "json",
                     data: formData,
