@@ -443,7 +443,7 @@
                     href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI5NjY5ODE0Nw==&scene=124#wechat_redirect"><i
                     class="fa fa-weixin"></i></a></li>
             <li title="github"><a href="https://github.com/NUPT-SACC"><i class="fa fa-github"></i></a></li>
-            <li title="bisai"><a href=""><i class="fa fa-steam"></i> </a></li>
+            <li title="email"><a href=""><i class="fa fa-envelope"></i> </a></li>
         </ul>
     </nav>
     <!-- 社交图标结束 -->
@@ -524,28 +524,32 @@
                     data: formData,
                     async: false,
                     success: function (resp) {
-                        if (resp.error === 0) {
+                        if (resp.error == 0) {
                             alert("输入不能为空！");
                             $("#apply-notice").text("输入不能为空");
-                            console.log(resp.error)
-                        } else if (resp.error = 1) {
+                            console.log(resp)
+                        } else if (resp.error == 1) {
                             $("#apply-stu").attr("value","");
                             alert("该学号已注册~");
                             $("#apply-stu").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
-                            console.log(resp.error)
-                        } else if (resp.error = 2) {
+                            $("#apply-stu").attr({"value":"","placeholder":"该学号已注册~"} );
+                            $("#apply-stu").attr("value","");
+                            console.log(resp)
+                        } else if (resp.error == 2) {
                             alert("该QQ已注册~");
                             $("#apply-QQ").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
                             $("#apply-QQ").attr({"value":"","placeholder":"该QQ已注册~"} );
-                            console.log(resp.error)
-                        } else if (resp.error = 3) {
+                            $("#apply-stu").attr("value","");
+                            console.log(resp)
+                        } else if (resp.error == 3) {
                             alert("该邮箱已注册~");
                             $("#apply-email").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
                             $("#apply-email").attr({"value":"","placeholder":"该邮箱已注册~"});
+                            $("#apply-stu").attr("value","");
                             console.log(resp.error)
-                        } else if (resp.success = 0) {
+                        } else if (resp.success == 0) {
                             alert("注册成功！");
-                            console.log("s");
+                            console.log(resp);
                             window.open("check.html");
                         }
                     },
