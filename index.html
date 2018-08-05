@@ -130,9 +130,9 @@
                                         <!-- 开始幻灯片内容-->
                                         <div class="slide-content">
 
-                                            <div class="row">
+                                            <div class="row" id="reform">
                                                 <div class="col-lg-5 col-lg-offset-2 col-md-6 col-md-offset-1 col-md-push-5 svm">
-                                                    <div class="section-info text-right">
+                                                    <div class="section-info text-right" id="reform01">
                                                         <!-- 标题开始 -->
                                                         <h2 class="section-title text-default animated"
                                                             data-animation="fadeIn" data-animation-delay="60">加入我们</h2>
@@ -146,7 +146,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 col-md-pull-7 svm">
-                                                    <div class="section-info text-left">
+                                                    <div class="section-info text-left" id="reform00">
                                                         <p>写下你的<strong>资料</strong>,你就是我们的人了!
                                                         <div id="ajax"></div>
                                                         </p>
@@ -187,8 +187,7 @@
                                                                         class="btn btn-inverse">
                                                                     <i
                                                                             class="fa fa-mouse-pointer"></i>
-                                                                    <span>申请</span>
-                                                                </button>
+                                                                    <span>申请</span></button>
                                                             </div>
                                                         </div>
                                                         <!-- 注册表单结束 -->
@@ -417,37 +416,42 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- 结束容器 -->
                     </div>
+                    <!-- 结束容器 -->
+
                 </div>
+
             </div>
         </section>
     </main>
+    <footer id="awd-site-footer">
+        <!-- 左下角 -->
+        <div class="copyright animated" data-animation="fadeInUp" data-animation-delay="500">
+            <p>sacc期待你的加入</p>
+        </div>
+        <!-- 左下角结束 -->
+        <!-- 社交图标开始 -->
+        <nav class="social-icons" data-animation="fadeInUp" data-animation-delay="500">
+            <ul>
+                <li title="主页"><a href=""><i class="fa fa-home"></i></a></li>
+                <li title="QQ"><a href="https://jq.qq.com/?_wv=1027&k=5Ijl448"><i class="fa fa-qq"></i></a></li>
+                <li title="微信号：nuptsacc"><a
+                        href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI5NjY5ODE0Nw==&scene=124#wechat_redirect"><i
+                        class="fa fa-weixin"></i></a></li>
+                <li title="github"><a href="https://github.com/NUPT-SACC"><i class="fa fa-github"></i></a></li>
+                <li title="email"><a href=""><i class="fa fa-envelope"></i> </a></li>
+            </ul>
+        </nav>
+        <!-- 社交图标结束 -->
+    </footer>
+</div>
+
 </div>
 <!-- 结束部分 -->
 <!-- 搞定~ -->
 
 
-<footer id="awd-site-footer">
-    <!-- 左下角 -->
-    <div class="copyright animated" data-animation="fadeInUp" data-animation-delay="500">
-        <p>sacc期待你的加入</p>
-    </div>
-    <!-- 左下角结束 -->
-    <!-- 社交图标开始 -->
-    <nav class="social-icons" data-animation="fadeInUp" data-animation-delay="500">
-        <ul>
-            <li title="主页"><a href=""><i class="fa fa-home"></i></a></li>
-            <li title="QQ"><a href="https://jq.qq.com/?_wv=1027&k=5Ijl448"><i class="fa fa-qq"></i></a></li>
-            <li title="微信号：nuptsacc"><a
-                    href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI5NjY5ODE0Nw==&scene=124#wechat_redirect"><i
-                    class="fa fa-weixin"></i></a></li>
-            <li title="github"><a href="https://github.com/NUPT-SACC"><i class="fa fa-github"></i></a></li>
-            <li title="email"><a href=""><i class="fa fa-envelope"></i> </a></li>
-        </ul>
-    </nav>
-    <!-- 社交图标结束 -->
-</footer>
+
 <!-- JS -->
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
@@ -456,42 +460,42 @@
 <script type="text/javascript" src="assets/js/main.js"></script>
 <script>
     $(document).ready(function () {
-        var stu=0;
-        var bu=0;
-        var koukou=0;
+        var stu = 0;
+        var bu = 0;
+        var koukou = 0;
         var summ;
-        $("#apply-stu").blur(function(){
-            var re=document.querySelector("#apply-stu");
+        $("#apply-stu").blur(function () {
+            var re = document.querySelector("#apply-stu");
             //console.log(re.value.length);
-            if(re.value.length!=9){
-                $("#apply-stu").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
-                stu=0;
-            }else{
-                $("#apply-stu").css({"background":" url(assets/img/C.png) no-repeat right","border-color":""});
-                stu=1;
+            if (re.value.length != 9) {
+                $("#apply-stu").css({"background": " url(assets/img/X.png) no-repeat right", "border-color": "red"});
+                stu = 0;
+            } else {
+                $("#apply-stu").css({"background": " url(assets/img/C.png) no-repeat right", "border-color": ""});
+                stu = 1;
             }
         });
-        $("#apply-QQ").blur(function(){
-            var re1=document.querySelector("#apply-QQ");
+        $("#apply-QQ").blur(function () {
+            var re1 = document.querySelector("#apply-QQ");
             //console.log(re1.value.length);
-            if(re1.value.length<6||re1.value.length>12){
-                $("#apply-QQ").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
-                koukou=0;
-            }else{
-                $("#apply-QQ").css({"background":" url(assets/img/C.png) no-repeat right","border-color":""});
-                koukou=1;
+            if (re1.value.length < 6 || re1.value.length > 12) {
+                $("#apply-QQ").css({"background": " url(assets/img/X.png) no-repeat right", "border-color": "red"});
+                koukou = 0;
+            } else {
+                $("#apply-QQ").css({"background": " url(assets/img/C.png) no-repeat right", "border-color": ""});
+                koukou = 1;
             }
         });
-        $("#bumen").blur(function(){
-            var re2=document.querySelector("#bumen");
+        $("#bumen").blur(function () {
+            var re2 = document.querySelector("#bumen");
             //console.log(re2.value);
-            if(re2.value==0){
-                $("#bumen").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
-                bu=0;
+            if (re2.value == 0) {
+                $("#bumen").css({"background": " url(assets/img/X.png) no-repeat right", "border-color": "red"});
+                bu = 0;
                 //console.log("ok");
-            }else{
-                $("#bumen").css({"background":" url(assets/img/C.png) no-repeat right","border-color":""});
-                bu=1;
+            } else {
+                $("#bumen").css({"background": " url(assets/img/C.png) no-repeat right", "border-color": ""});
+                bu = 1;
             }
         });
         $("#apply-submit").click(function () {
@@ -503,7 +507,7 @@
             var obj0 = document.getElementById("apply-stu"); //要验证的对象
             var obj1 = document.getElementById("apply-QQ");
             var obj2 = document.getElementById("apply-name");
-            summ=bu+koukou+stu;
+            summ = bu + koukou + stu;
             console.log(summ);
             if (obj0.value === "" || obj1.value === "" || obj2.value === "" || obj3.value === 0) { //输入不能为空
                 $("#apply-stu").css("background", " url(assets/img/X.png) no-repeat right");
@@ -511,7 +515,7 @@
                 // $("#apply-stu-notice").text("输入不能为空");
             } else if (!reg0.test(obj0.value)) { //正则验证不通过，格式不对
                 console.log("学号或QQ输入错误!");
-            } else if(summ=3){
+            } else if (summ = 3) {
                 for (var i = 0; i < inputElements.length; i++) {
                     formData += inputElements[i].name + "=" + inputElements[i].value + "&";
                 }
@@ -524,33 +528,45 @@
                     data: formData,
                     async: false,
                     success: function (resp) {
-                        if (resp.error == 0) {
+                        if (resp.error == 1) {
                             alert("输入不能为空！");
                             $("#apply-notice").text("输入不能为空");
                             console.log(resp)
-                        } else if (resp.error == 1) {
-                            $("#apply-stu").attr("value","");
-                            alert("该学号已注册~");
-                            $("#apply-stu").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
-                            $("#apply-stu").attr({"value":"","placeholder":"该学号已注册~"} );
-                            $("#apply-stu").attr("value","");
-                            console.log(resp)
                         } else if (resp.error == 2) {
-                            alert("该QQ已注册~");
-                            $("#apply-QQ").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
-                            $("#apply-QQ").attr({"value":"","placeholder":"该QQ已注册~"} );
-                            $("#apply-stu").attr("value","");
-                            console.log(resp)
+                            alert("该邮箱已注册，请到邮箱进行验证！");
                         } else if (resp.error == 3) {
+                            $("#apply-stu").attr("value", "");
+                            alert("该学号已注册~");
+                            $("#apply-stu").css({
+                                "background": " url(assets/img/X.png) no-repeat right",
+                                "border-color": "red"
+                            });
+                            $("#apply-stu").attr({"value": "", "placeholder": "该学号已注册~"});
+                            $("#apply-stu").attr("value", "");
+                            console.log(resp)
+                        } else if (resp.error == 4) {
+                            alert("该QQ已注册~");
+                            $("#apply-QQ").css({
+                                "background": " url(assets/img/X.png) no-repeat right",
+                                "border-color": "red"
+                            });
+                            $("#apply-QQ").attr({"value": "", "placeholder": "该QQ已注册~"});
+                            $("#apply-stu").attr("value", "");
+                            console.log(resp)
+                        } else if (resp.error == 5) {
                             alert("该邮箱已注册~");
-                            $("#apply-email").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
-                            $("#apply-email").attr({"value":"","placeholder":"该邮箱已注册~"});
-                            $("#apply-stu").attr("value","");
+                            $("#apply-email").css({
+                                "background": " url(assets/img/X.png) no-repeat right",
+                                "border-color": "red"
+                            });
+                            $("#apply-email").attr({"value": "", "placeholder": "该邮箱已注册~"});
+                            $("#apply-stu").attr("value", "");
                             console.log(resp.error)
                         } else if (resp.success == 0) {
                             alert("注册成功！");
                             console.log(resp);
-                            window.open("check.html");
+                            $("#reform01").html("<img src='assets/img/timg.jpg'>");
+                            $("#reform00").html("<h1>&nbsp;&nbsp;我们发送了一封验证邮件到你的邮箱，请进行验证！</h1>");
                         }
                     },
                     error: function (resp) {

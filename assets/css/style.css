@@ -1429,12 +1429,11 @@ textarea::-webkit-input-placeholder {
         right: 20px;
         bottom: 10px;
         height: 20px;
-
     }
 
     .social-icons {
         width: 100%;
-        margin-bottom: 20px;
+        padding-bottom: 40px;
         text-align: center;
     }
 
@@ -1444,7 +1443,7 @@ textarea::-webkit-input-placeholder {
 
     #awd-site-footer {
         position: fixed;
-        margin-right: 5vw;
+        margin-right: 4vw;
     }
 }
 
@@ -1519,6 +1518,11 @@ textarea::-webkit-input-placeholder {
     .section-info .go-slide {
         width: 100%;
         margin-top: 15px;
+    }
+
+    #awd-site-footer {
+        position: fixed;
+        margin-right: 21vw;
     }
 
 }
