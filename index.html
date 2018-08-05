@@ -22,28 +22,9 @@
     <link rel="apple-touch-icon" href="assets/img/logo_副本4.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/img/logo_副本2.png">
     <link rel="apple-touch-icon" sizes="114x114" href="assets/img/logo_副本3.png">
+    <script src="../node.js"></script>
 </head>
 <body>
-<!--<div class="spinner">-->
-<!--<div class="spinner-load load1">-->
-<!--<div class="circle1"></div>-->
-<!--<div class="circle2"></div>-->
-<!--<div class="circle3"></div>-->
-<!--<div class="circle4"></div>-->
-<!--</div>-->
-<!--<div class="spinner-load load2">-->
-<!--<div class="circle1"></div>-->
-<!--<div class="circle2"></div>-->
-<!--<div class="circle3"></div>-->
-<!--<div class="circle4"></div>-->
-<!--</div>-->
-<!--<div class="spinner-load load3">-->
-<!--<div class="circle1"></div>-->
-<!--<div class="circle2"></div>-->
-<!--<div class="circle3"></div>-->
-<!--<div class="circle4"></div>-->
-<!--</div>-->
-<!--</div>-->
 <div id="awd-site-wrap" class="bg bg-home">
     <div id="bg">
         <div id="overlay">
@@ -475,13 +456,19 @@
 <script type="text/javascript" src="assets/js/main.js"></script>
 <script>
     $(document).ready(function () {
+        var stu=0;
+        var bu=0;
+        var koukou=0;
+        var summ;
         $("#apply-stu").blur(function(){
             var re=document.querySelector("#apply-stu");
             //console.log(re.value.length);
             if(re.value.length!=9){
                 $("#apply-stu").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
+                stu=0;
             }else{
-                $("#apply-stu").css({"background":" url(assets/img/C.png) no-repeat right","border-color":"green"});
+                $("#apply-stu").css({"background":" url(assets/img/C.png) no-repeat right","border-color":""});
+                stu=1;
             }
         });
         $("#apply-QQ").blur(function(){
@@ -489,8 +476,10 @@
             //console.log(re1.value.length);
             if(re1.value.length<6||re1.value.length>12){
                 $("#apply-QQ").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
+                koukou=0;
             }else{
-                $("#apply-QQ").css({"background":" url(assets/img/C.png) no-repeat right","border-color":"green"});
+                $("#apply-QQ").css({"background":" url(assets/img/C.png) no-repeat right","border-color":""});
+                koukou=1;
             }
         });
         $("#bumen").blur(function(){
@@ -498,7 +487,11 @@
             //console.log(re2.value);
             if(re2.value==0){
                 $("#bumen").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
+                bu=0;
                 //console.log("ok");
+            }else{
+                $("#bumen").css({"background":" url(assets/img/C.png) no-repeat right","border-color":""});
+                bu=1;
             }
         });
         $("#apply-submit").click(function () {
@@ -510,13 +503,15 @@
             var obj0 = document.getElementById("apply-stu"); //要验证的对象
             var obj1 = document.getElementById("apply-QQ");
             var obj2 = document.getElementById("apply-name");
+            summ=bu+koukou+stu;
+            console.log(summ);
             if (obj0.value === "" || obj1.value === "" || obj2.value === "" || obj3.value === 0) { //输入不能为空
                 $("#apply-stu").css("background", " url(assets/img/X.png) no-repeat right");
                 $("#apply-stu").css("border-color", "red");
                 // $("#apply-stu-notice").text("输入不能为空");
             } else if (!reg0.test(obj0.value)) { //正则验证不通过，格式不对
                 console.log("学号或QQ输入错误!");
-            } else {
+            } else if(summ=3){
                 for (var i = 0; i < inputElements.length; i++) {
                     formData += inputElements[i].name + "=" + inputElements[i].value + "&";
                 }
@@ -536,13 +531,16 @@
                         } else if (resp.error = 1) {
                             $("#apply-stu").attr("value","");
                             alert("该学号已注册~");
+                            $("#apply-stu").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
                             console.log(resp.error)
                         } else if (resp.error = 2) {
                             alert("该QQ已注册~");
+                            $("#apply-QQ").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
                             $("#apply-QQ").attr({"value":"","placeholder":"该QQ已注册~"} );
                             console.log(resp.error)
                         } else if (resp.error = 3) {
                             alert("该邮箱已注册~");
+                            $("#apply-email").css({"background":" url(assets/img/X.png) no-repeat right","border-color":"red"});
                             $("#apply-email").attr({"value":"","placeholder":"该邮箱已注册~"});
                             console.log(resp.error)
                         } else if (resp.success = 0) {
@@ -555,30 +553,11 @@
                         if (resp === 0) {
                             console.log("gg");
                         }
-
                     }
                 })
             }
         });
     });
-
-    // function inputcheck() {
-    //     var xmlhttp = new XMLHttpRequest();
-
-    //     var obj3 = document.getElementById("bumen");
-    //     var formData = "";
-    //     var inputElements = document.getElementsByTagName("input");
-    //     for (var i = 0; i < inputElements.length; i++) {
-    //         formData += inputElements[i].name + "=" + inputElements[i].value + "&";
-    //     }
-    //     formData += "choice=" + obj3.value + "&";
-    //     xmlhttp.open("POST", "http://10.160.109.128:8000/newstudent/sign_up/", true);
-    //     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    //     xmlhttp.send(formData);
-    //     alert(xmlhttp.responseText);
-    // }
-
-
 </script>
 
 </body>
