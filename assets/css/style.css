@@ -1557,4 +1557,8 @@ textarea::-webkit-input-placeholder {
         margin: 20px 0;
     }
 
+    #awd-site-footer {
+        display: none;
+    }
+
 }
