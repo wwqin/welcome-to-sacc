@@ -464,10 +464,15 @@
         var bu = 0;
         var koukou = 0;
         var summ;
+        var reg2 = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]"); 
         $("#apply-stu").blur(function () {
             var re = document.querySelector("#apply-stu");
-            //console.log(re.value.length);
-            if (re.value.length != 9) {
+            console.log(re.value);
+            if (reg2.test(re.value)){
+                $("#apply-stu").attr("value", "");
+                alert("dalao，不要搞我了~");
+                stu = 0;
+            }else if (re.value.length != 9) {
                 $("#apply-stu").css({"background": " url(assets/img/X.png) no-repeat right", "border-color": "red"});
                 stu = 0;
             } else {
@@ -478,7 +483,10 @@
         $("#apply-QQ").blur(function () {
             var re1 = document.querySelector("#apply-QQ");
             //console.log(re1.value.length);
-            if (re1.value.length < 6 || re1.value.length > 12) {
+            if (reg2.test(re1.value)){
+                alert("dalao，不要搞我了~");
+                $("#apply-QQ").attr("value","");
+            }else if (re1.value.length < 6 || re1.value.length > 12) {
                 $("#apply-QQ").css({"background": " url(assets/img/X.png) no-repeat right", "border-color": "red"});
                 koukou = 0;
             } else {
@@ -498,12 +506,23 @@
                 bu = 1;
             }
         });
+        $("#apply-name").blur(function () {
+            var re1 = document.querySelector("#apply-name");
+            //console.log(re1.value.length);
+            if (reg2.test(re1.value)){
+                alert("dalao，不要搞我了~");
+                $("#apply-name").attr("value","");
+                return false;
+            }else{
+                return true;
+            }
+        });
         $("#apply-submit").click(function () {
             var obj3 = document.getElementById("bumen");
             var formData = "";
             var inputElements = document.getElementsByTagName("input");
-            var reg0 = new RegExp("[A-Za-z0-9]+$"); //正则表达式
-            var reg1 = new RegExp("\d{3,12}");//
+            var reg0 = new RegExp("[A-Za-z0-9]+$"); 
+            var reg1 = new RegExp("\d{3,12}");
             var obj0 = document.getElementById("apply-stu"); //要验证的对象
             var obj1 = document.getElementById("apply-QQ");
             var obj2 = document.getElementById("apply-name");
