@@ -1452,7 +1452,7 @@ textarea::-webkit-input-placeholder {
     /* 时钟 */
 
      .social-icons{
-         max-width: 290px;
+         max-width: 480px;
      }
     #clock .counter-date {
         max-width: 290px;
@@ -1522,7 +1522,13 @@ textarea::-webkit-input-placeholder {
 
     #awd-site-footer {
         position: fixed;
-        margin-right: 21vw;
+        margin-right: 1vw;
+    }
+
+    .social-icons {
+        width: 100%;
+        padding-bottom: 10px;
+        text-align: center;
     }
 
 }
